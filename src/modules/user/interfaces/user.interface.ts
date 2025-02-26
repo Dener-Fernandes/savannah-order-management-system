@@ -1,4 +1,4 @@
-import { CommonEntityInterface } from 'src/modules/common/interfaces';
+import { CommonEntityInterface } from 'src/common/interfaces';
 
 export interface UserInterface extends CommonEntityInterface {
   email: string;
