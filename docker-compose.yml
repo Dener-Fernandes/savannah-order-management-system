@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    restart: always
+    environment:
+      POSTGRES_USER: savannah_user
+      POSTGRES_PASSWORD: savannah_password
+      POSTGRES_DB: savannah_database
+    ports:
+      - '5432:5432'

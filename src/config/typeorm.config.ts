@@ -8,7 +8,7 @@ export const typeormConfig = registerAs(
       type: 'postgres',
       url: process.env.DATABASE_URL
         ? process.env.DATABASE_URL
-        : 'postgresql://postgres:postgres@localhost:5432/savannah_database',
+        : 'postgresql://savannah_user:savannah_password@localhost:5432/savannah_database',
       migrationsRun:
         'string' === typeof process.env.DATABASE_MIGRATIONS_RUN
           ? process.env.DATABASE_MIGRATIONS_RUN === 'true'
