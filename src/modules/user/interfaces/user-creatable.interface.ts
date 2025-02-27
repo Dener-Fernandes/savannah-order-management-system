@@ -1,5 +1,5 @@
 export interface UserCreatableInterface {
-  username: string;
+  userName: string;
   password: string;
   firstName: string;
   lastName: string;

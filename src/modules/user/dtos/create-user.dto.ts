@@ -13,7 +13,7 @@ export class CreateUserDto implements UserCreatableInterface {
 
   @Expose()
   @IsString()
-  username: string;
+  userName: string;
 
   @Expose()
   @IsString()
