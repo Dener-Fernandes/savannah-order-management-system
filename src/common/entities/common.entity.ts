@@ -6,7 +6,7 @@ import {
 import { CommonEntityInterface } from '../interfaces';
 
 export abstract class CommonEntity implements CommonEntityInterface {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @CreateDateColumn()
