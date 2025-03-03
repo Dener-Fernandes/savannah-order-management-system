@@ -1,5 +1,5 @@
 import { Column, Entity, Unique } from 'typeorm';
-import { UserInterface } from '../interfaces';
+import { UserInterface } from './interfaces';
 import { CommonEntity } from 'src/common/entities/common.entity';
 
 @Entity()

@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { UserSubscriber } from 'src/modules/user/subscribers/user.subscriber';
+import { UserSubscriber } from 'src/modules/user/user.subscriber';
 
 export const typeormConfig = registerAs(
   'TYPEORM_MODULE_CONFIG',

@@ -7,7 +7,7 @@ import {
   Not,
   UpdateEvent,
 } from 'typeorm';
-import { User } from '../entities/user.entity';
+import { User } from './user.entity';
 import { CryptUtil } from 'src/common/utils/crypt.util';
 import { BadRequestException } from '@nestjs/common';
 

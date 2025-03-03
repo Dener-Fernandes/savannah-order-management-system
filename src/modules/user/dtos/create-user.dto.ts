@@ -9,6 +9,7 @@ export class CreateUserDto implements UserCreatableInterface {
 
   @Expose()
   @IsString()
+  @IsEmail()
   email: string;
 
   @Expose()
@@ -25,6 +26,5 @@ export class CreateUserDto implements UserCreatableInterface {
 
   @Expose()
   @IsString()
-  @IsEmail()
   lastName: string;
 }
