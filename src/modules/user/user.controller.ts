@@ -10,8 +10,7 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dtos/update-user.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserResponseDto } from 'src/common/doc/responses/user/user.response';
+import { ApiTags } from '@nestjs/swagger';
 import { ApiCreateUser } from './decorators/ApiCreateUser';
 import { ApiFindUserById } from './decorators/ApiFindUserById';
 import { ApiFindAllUsers } from './decorators/ApiFindAllUsers';

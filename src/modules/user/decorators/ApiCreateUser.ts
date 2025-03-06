@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserResponseDto } from 'src/common/doc/responses/user/user.response';
+import { CreateUserDto } from '../dtos/create-user.dto';
 
 export function ApiCreateUser() {
   return applyDecorators(
@@ -11,7 +11,7 @@ export function ApiCreateUser() {
     ApiResponse({
       status: 201,
       description: 'Created',
-      type: UserResponseDto,
+      type: CreateUserDto,
     }),
     ApiResponse({
       status: 400,
