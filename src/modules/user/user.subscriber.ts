@@ -56,7 +56,7 @@ export class UserSubscriber implements EntitySubscriberInterface<User> {
       const count = await event.manager.count(User, criteria);
 
       if (count > 0) {
-        throw new BadRequestException('Email address already exists.');
+        throw new BadRequestException('email address already exists');
       } else {
         return;
       }
