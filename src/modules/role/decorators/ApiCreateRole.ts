@@ -1,26 +1,28 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserDto } from '../dtos/user.dto';
+import { CreateRoleDto } from '../dtos/create-role.dto';
+import { RoleDto } from '../dtos/role.dto';
 
-export function ApiFindUserById() {
+export function ApiCreateRole() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'findUser',
-      description: 'It finds an user by id.',
+      operationId: 'createRole',
+      description: 'It creates a role.',
     }),
     ApiResponse({
-      status: 200,
-      description: 'Success',
-      type: UserDto,
+      status: 201,
+      description: 'Created',
+      type: RoleDto,
     }),
     ApiResponse({
-      status: 404,
-      description: 'Not found',
+      status: 400,
+      description: 'Bad Request',
       content: {
         'application/json': {
           example: {
-            message: 'Not found',
-            statusCode: 404,
+            message: ['name must be a string'],
+            error: 'Bad Request',
+            statusCode: 400,
           },
         },
       },

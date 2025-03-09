@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserResponseDto } from 'src/common/doc/responses/user/user.response';
+import { UserDto } from '../dtos/user.dto';
 
 export function ApiCreateUser() {
   return applyDecorators(
@@ -11,7 +11,7 @@ export function ApiCreateUser() {
     ApiResponse({
       status: 201,
       description: 'Created',
-      type: UserResponseDto,
+      type: UserDto,
     }),
     ApiResponse({
       status: 400,
@@ -20,7 +20,7 @@ export function ApiCreateUser() {
         'application/json': {
           example: {
             message: [
-              'Email address already exists.',
+              'email address already exists',
               'email must be an email',
               'email must be a string',
               'userName must be a string',

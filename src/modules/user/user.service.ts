@@ -27,7 +27,7 @@ export class UserService {
     return plainToInstance(UserDto, users);
   }
 
-  public async findById(id: string): Promise<User> {
+  private async findById(id: string): Promise<User> {
     const user = await this.userRepository.findOneBy({ id });
 
     if (!user) throw new NotFoundException();
