@@ -5,7 +5,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Exclude()
 export class CreateUserDto implements UserCreatableInterface {
-  @ApiProperty({ example: 'RickDeckard@gmail.com' })
+  @ApiProperty({ example: 'rickDeckard@gmail.com' })
   @Expose()
   @IsString()
   @IsEmail()
