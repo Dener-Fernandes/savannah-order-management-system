@@ -8,12 +8,13 @@ import { ConfigModule, ConfigType } from '@nestjs/config';
 import { RoleModule } from './modules/role/role.module';
 import { UserRoleModule } from './modules/user-role/user-role.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { jwtConfig } from './config/jwt.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [typeormConfig],
+      load: [typeormConfig, jwtConfig],
     }),
     TypeOrmModule.forRootAsync({
       inject: [typeormConfig.KEY],
