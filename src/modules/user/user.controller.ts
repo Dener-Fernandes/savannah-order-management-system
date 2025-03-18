@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserService } from './user.service';
@@ -16,8 +17,14 @@ import { ApiFindUserById } from './decorators/ApiFindUserById';
 import { ApiFindAllUsers } from './decorators/ApiFindAllUsers';
 import { ApiUpdateUser } from './decorators/ApiUpdateUser';
 import { ApiDeleteUser } from './decorators/ApiDeleteUser';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
+import { Roles } from '../role/decorators/roles.decorator';
+import { RoleEnum } from '../role/enums/role.enum';
+import { RolesGuard } from '../role/guards/roles.guard';
 
 @ApiTags('User')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(RoleEnum.Admin)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

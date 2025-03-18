@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dtos/create-role.dto';
@@ -16,8 +17,14 @@ import { ApiFindAllRoles } from './decorators/ApiFindAllRoles';
 import { ApiFindRoleById } from './decorators/ApiFindRoleById';
 import { ApiDeleteRole } from './decorators/ApiDeleteRole';
 import { ApiUpdateRole } from './decorators/ApiUpdateRole';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
+import { RolesGuard } from './guards/roles.guard';
+import { Roles } from './decorators/roles.decorator';
+import { RoleEnum } from './enums/role.enum';
 
 @ApiTags('Role')
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(RoleEnum.Admin)
 @Controller('role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}

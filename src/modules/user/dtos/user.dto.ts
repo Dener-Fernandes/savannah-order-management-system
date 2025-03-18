@@ -17,6 +17,7 @@ import {
 } from '../constants/user.constant';
 import { CommonEntityDto } from 'src/common/dtos/common-entity.dto';
 import { ApiProperty } from '@nestjs/swagger';
+import { UserRoleDto } from 'src/modules/user-role/dtos/user-role.dto';
 
 @Exclude()
 export class UserDto
@@ -56,4 +57,12 @@ export class UserDto
   @IsBoolean()
   @Type(() => Boolean)
   active!: boolean;
+
+  @Expose()
+  @Transform(({ value }) => {
+    return value?.map((role: UserRoleDto) => {
+      return role?.role?.name;
+    });
+  })
+  userRoles!: UserRoleDto[];
 }

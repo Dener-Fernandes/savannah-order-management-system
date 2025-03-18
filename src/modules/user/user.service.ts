@@ -28,7 +28,10 @@ export class UserService {
   }
 
   private async findById(id: string): Promise<User> {
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['userRoles.role'],
+    });
 
     if (!user) throw new NotFoundException();
 
@@ -54,7 +57,7 @@ export class UserService {
     await this.userRepository.remove(user);
   }
 
-  async valideteUserPassword(
+  async validateUserPassword(
     userName: string,
     password: string,
   ): Promise<UserDto | null> {
