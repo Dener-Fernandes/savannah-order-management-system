@@ -11,20 +11,21 @@ import {
 import { RoleService } from './role.service';
 import { CreateRoleDto } from './dtos/create-role.dto';
 import { UpdateRoleDto } from './dtos/update-role.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { ApiCreateRole } from './decorators/ApiCreateRole';
-import { ApiFindAllRoles } from './decorators/ApiFindAllRoles';
-import { ApiFindRoleById } from './decorators/ApiFindRoleById';
-import { ApiDeleteRole } from './decorators/ApiDeleteRole';
-import { ApiUpdateRole } from './decorators/ApiUpdateRole';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiCreateRole } from './decorators/api-create-role.decorator';
+import { ApiFindAllRoles } from './decorators/api-find-all-roles.decorator';
+import { ApiFindRoleById } from './decorators/api-find-role-by-id.decorator';
+import { ApiDeleteRole } from './decorators/api-delete-role.decorator';
+import { ApiUpdateRole } from './decorators/api-update-role.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { RolesGuard } from './guards/roles.guard';
 import { Roles } from './decorators/roles.decorator';
 import { RoleEnum } from './enums/role.enum';
 
 @ApiTags('Role')
-@UseGuards(JwtAuthGuard, RolesGuard)
+@ApiBearerAuth()
 @Roles(RoleEnum.Admin)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller('role')
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}

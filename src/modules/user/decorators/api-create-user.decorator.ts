@@ -2,15 +2,15 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UserDto } from '../dtos/user.dto';
 
-export function ApiUpdateUser() {
+export function ApiCreateUser() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'updateUser',
-      description: 'It updates an user by id.',
+      operationId: 'createUser',
+      description: 'It creates a user.',
     }),
     ApiResponse({
-      status: 200,
-      description: 'Success',
+      status: 201,
+      description: 'Created',
       type: UserDto,
     }),
     ApiResponse({
@@ -20,9 +20,13 @@ export function ApiUpdateUser() {
         'application/json': {
           example: {
             message: [
+              'email address already exists',
+              'email must be an email',
+              'email must be a string',
+              'userName must be a string',
+              'password must be a string',
               'firstName must be a string',
               'lastName must be a string',
-              'active must be a boolean value',
             ],
             error: 'Bad Request',
             statusCode: 400,
@@ -31,13 +35,13 @@ export function ApiUpdateUser() {
       },
     }),
     ApiResponse({
-      status: 404,
-      description: 'Not found',
+      status: 401,
+      description: 'Unauthorized',
       content: {
         'application/json': {
           example: {
-            message: 'Not found',
-            statusCode: 404,
+            message: 'Unauthorized',
+            statusCode: 401,
           },
         },
       },

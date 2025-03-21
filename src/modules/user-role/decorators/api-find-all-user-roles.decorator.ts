@@ -1,17 +1,29 @@
 import { applyDecorators } from '@nestjs/common';
-import { RoleDto } from '../dtos/role.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { UserRoleDto } from '../dtos/user-role.dto';
 
-export function ApiFindAllRoles() {
+export function ApiFindAllUserRoles() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'findAllRoles',
-      description: 'It finds all roles.',
+      operationId: 'findAllUserRoles',
+      description: 'It finds all user roles.',
     }),
     ApiResponse({
       status: 200,
       description: 'Success',
-      type: [RoleDto],
+      type: [UserRoleDto],
+    }),
+    ApiResponse({
+      status: 401,
+      description: 'Unauthorized',
+      content: {
+        'application/json': {
+          example: {
+            message: 'Unauthorized',
+            statusCode: 401,
+          },
+        },
+      },
     }),
     ApiResponse({
       status: 500,

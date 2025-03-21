@@ -1,27 +1,26 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserRoleDto } from '../dtos/user-role.dto';
+import { UserDto } from 'src/modules/user/dtos/user.dto';
 
-export function ApiCreateUserRole() {
+export function AuthProfile() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'createUSerRole',
-      description: 'It creates an user role.',
+      operationId: 'authProfile',
+      description: 'It return an user profile.',
     }),
     ApiResponse({
       status: 201,
       description: 'Created',
-      type: UserRoleDto,
+      type: UserDto,
     }),
     ApiResponse({
-      status: 400,
-      description: 'Bad Request',
+      status: 401,
+      description: 'Unauthorized',
       content: {
         'application/json': {
           example: {
-            message: ['userId must be a UUID', 'roleId must be a UUID'],
-            error: 'Bad Request',
-            statusCode: 400,
+            message: 'Unauthorized',
+            statusCode: 401,
           },
         },
       },

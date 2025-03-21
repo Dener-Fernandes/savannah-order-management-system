@@ -28,6 +28,18 @@ export function ApiCreateRole() {
       },
     }),
     ApiResponse({
+      status: 401,
+      description: 'Unauthorized',
+      content: {
+        'application/json': {
+          example: {
+            message: 'Unauthorized',
+            statusCode: 401,
+          },
+        },
+      },
+    }),
+    ApiResponse({
       status: 500,
       description: 'Internal server error',
       content: {

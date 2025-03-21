@@ -1,17 +1,17 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { UserDto } from '../dtos/user.dto';
+import { UserRoleDto } from '../dtos/user-role.dto';
 
-export function ApiCreateUser() {
+export function ApiCreateUserRole() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'createUser',
-      description: 'It creates a user.',
+      operationId: 'createUSerRole',
+      description: 'It creates an user role.',
     }),
     ApiResponse({
       status: 201,
       description: 'Created',
-      type: UserDto,
+      type: UserRoleDto,
     }),
     ApiResponse({
       status: 400,
@@ -19,17 +19,21 @@ export function ApiCreateUser() {
       content: {
         'application/json': {
           example: {
-            message: [
-              'email address already exists',
-              'email must be an email',
-              'email must be a string',
-              'userName must be a string',
-              'password must be a string',
-              'firstName must be a string',
-              'lastName must be a string',
-            ],
+            message: ['userId must be a UUID', 'roleId must be a UUID'],
             error: 'Bad Request',
             statusCode: 400,
+          },
+        },
+      },
+    }),
+    ApiResponse({
+      status: 401,
+      description: 'Unauthorized',
+      content: {
+        'application/json': {
+          example: {
+            message: 'Unauthorized',
+            statusCode: 401,
           },
         },
       },

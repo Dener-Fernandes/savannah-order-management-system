@@ -7,6 +7,7 @@ export async function swagger(app: INestApplication, environment: string) {
   const docOptions = new DocumentBuilder()
     .setTitle('Savannah Order Management System')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, docOptions);

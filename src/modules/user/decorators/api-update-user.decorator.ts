@@ -1,17 +1,17 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { RoleDto } from '../dtos/role.dto';
+import { UserDto } from '../dtos/user.dto';
 
-export function ApiUpdateRole() {
+export function ApiUpdateUser() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'updateRole',
-      description: 'It updates a role by id.',
+      operationId: 'updateUser',
+      description: 'It updates an user by id.',
     }),
     ApiResponse({
       status: 200,
       description: 'Success',
-      type: RoleDto,
+      type: UserDto,
     }),
     ApiResponse({
       status: 400,
@@ -19,9 +19,25 @@ export function ApiUpdateRole() {
       content: {
         'application/json': {
           example: {
-            message: ['name must be a string'],
+            message: [
+              'firstName must be a string',
+              'lastName must be a string',
+              'active must be a boolean value',
+            ],
             error: 'Bad Request',
             statusCode: 400,
+          },
+        },
+      },
+    }),
+    ApiResponse({
+      status: 401,
+      description: 'Unauthorized',
+      content: {
+        'application/json': {
+          example: {
+            message: 'Unauthorized',
+            statusCode: 401,
           },
         },
       },

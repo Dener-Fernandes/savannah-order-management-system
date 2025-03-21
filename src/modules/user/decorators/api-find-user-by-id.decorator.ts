@@ -1,15 +1,29 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { UserDto } from '../dtos/user.dto';
 
-export function ApiDeleteUser() {
+export function ApiFindUserById() {
   return applyDecorators(
     ApiOperation({
-      operationId: 'deleteUser',
-      description: 'It deletes an user by id.',
+      operationId: 'findUser',
+      description: 'It finds an user by id.',
     }),
     ApiResponse({
       status: 200,
       description: 'Success',
+      type: UserDto,
+    }),
+    ApiResponse({
+      status: 401,
+      description: 'Unauthorized',
+      content: {
+        'application/json': {
+          example: {
+            message: 'Unauthorized',
+            statusCode: 401,
+          },
+        },
+      },
     }),
     ApiResponse({
       status: 404,
