@@ -44,7 +44,7 @@ export class UserDto
   @MaxLength(USER_NAME_MAX_LENGTH)
   lastName!: string;
 
-  @ApiProperty({ example: 'RickDeckard@gmail.com' })
+  @ApiProperty({ example: 'rickDeckard@gmail.com' })
   @Expose()
   @IsEmail()
   @MinLength(USER_EMAIL_MIN_LENGTH)
