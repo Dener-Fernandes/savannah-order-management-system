@@ -10,10 +10,14 @@ import { LocalStrategy } from './local-strategy';
 import { LocalAuthGuard } from './guards/local-auth-guard';
 import { JwtStrategy } from './jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt-auth-guard';
+import { RoleModule } from '../role/role.module';
+import { UserRoleModule } from '../user-role/user-role.module';
 
 @Module({
   imports: [
     forwardRef(() => UserModule),
+    forwardRef(() => RoleModule),
+    forwardRef(() => UserRoleModule),
     PassportModule,
     JwtModule.registerAsync({
       inject: [jwtConfig.KEY],

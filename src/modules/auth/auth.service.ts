@@ -6,15 +6,24 @@ import { UserDto } from '../user/dtos/user.dto';
 import { UserService } from '../user/user.service';
 import { AuthResponseDto } from './dtos/auth-response.dto';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
+import { CreateUserDto } from '../user/dtos/create-user.dto';
+import { RoleService } from '../role/role.service';
+import { UserRoleService } from '../user-role/user-role.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
+    private roleService: RoleService,
+    private userRoleService: UserRoleService,
     private jwtService: JwtService,
     @Inject(jwtConfig.KEY)
     private config: ConfigType<typeof jwtConfig>,
   ) {}
+
+  public async register(user: CreateUserDto): Promise<void> {
+    const userCreadted = await this.userService.create(user);
+  }
 
   public async validateUser(
     username: string,
